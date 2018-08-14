@@ -27,7 +27,7 @@ RUN apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
 # Set entrypoint
-ADD res/run.sh /opt/run.sh
+ADD res/* /opt/
 ENTRYPOINT ["/opt/run.sh"]
 
 
