@@ -12,3 +12,4 @@ An easy way to start quickly is by using the docker-compose.yml.
 wget https://raw.githubusercontent.com/granlem/docker-fusiondirectory-openldap/master/example/docker-compose.yml
 docker-compose up
 ``` 
+Then you can access the Fusion Directory at http://localhost:10080/fd/.
