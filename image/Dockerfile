@@ -18,11 +18,15 @@ RUN (echo "deb http://repos.fusiondirectory.org/fusiondirectory-current/debian-s
     > /etc/apt/sources.list.d/fusiondirectory-stretch.list \
     && apt-get update
 
-
 # Install fusiondirctory-schema and insert schema with the official script
 RUN DEBIAN_FRONTEND=noninteractive apt-get install -yq --no-install-recommends fusiondirectory-schema \
     && apt-get install -yq --no-install-recommends fusiondirectory-plugin-systems fusiondirectory-plugin-systems-schema
 
+# Cleanup
+RUN apt-get clean \
+    && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
+
+# Set entrypoint
 ADD res/run.sh /opt/run.sh
 ENTRYPOINT ["/opt/run.sh"]
 
