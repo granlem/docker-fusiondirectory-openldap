@@ -163,8 +163,6 @@ EOF
 ldapadd -x -D "cn=admin,${SUFFIX}" -w ${LDAP_ADMIN_PASSWORD} -f /tmp/config.ldif
 ldapmodify -x -D "cn=admin,${SUFFIX}" -w ${LDAP_ADMIN_PASSWORD} -f /tmp/modify.ldif
 
-echo "ok"
-exit
 # Cleanup
 rm /tmp/conf.ldif
 rm /tmp/modify.ldif
