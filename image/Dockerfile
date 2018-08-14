@@ -7,7 +7,12 @@ ENV FUSIONDIRECTORY_VERSION=1.2-1
 
 # Add gpg keys from officual fusiondirectory
 # https://documentation.fusiondirectory.org/en/documentation/admin_get_ggp_keys
-RUN gpg --keyserver keys.gnupg.net --recv-key 0xD744D55EACDA69FF
+# Multiple keyservers as workaround because dockerhub seems to have problems with the gnupg keyserver
+# - See: https://github.com/nodejs/docker-node/issues/380#issuecomment-348464695
+ENV GPG_KEYS="0xD744D55EACDA69FF"
+RUN ( gpg --keyserver ha.pool.sks-keyservers.net --recv-keys "${GPG_KEYS}" \
+  || gpg --keyserver pgp.mit.edu --recv-keys "${GPG_KEYS}" \
+  || gpg --keyserver keyserver.pgp.com --recv-keys "${GPG_KEYS}" )
 RUN gpg --export -a "FusionDirectory Project Signing Key <contact@fusiondirectory.org>" > FD-archive-key
 RUN apt-key add FD-archive-key
 
