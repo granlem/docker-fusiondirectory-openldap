@@ -25,7 +25,7 @@ for elem in "${domain_elems[@]}" ; do
 done
 
 CN_ADMIN="cn=admin,ou=aclroles,${SUFFIX}"
-UID_FD_ADMIN="uid=fd-admin,${SUFFIX}"
+UID_FD_ADMIN="uid=fd-admin,ou=people,${SUFFIX}"
 CN_ADMIN_BS64=$(echo -n ${CN_ADMIN} | base64 | tr -d '\n')
 UID_FD_ADMIN_BS64=$(echo -n ${UID_FD_ADMIN} | base64 | tr -d '\n')
 FD_ADMIN_PASSWORD=${FD_ADMIN_PASSWORD:-"adminpassword"}
